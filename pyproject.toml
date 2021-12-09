@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "vyvodi"
 version = "0.1.0"
-description = ""
+description = "custom tensorflow tools"
 authors = ["nickolasgryga <nickolasgryga@gmail.com>"]
 
 [tool.poetry.dependencies]
