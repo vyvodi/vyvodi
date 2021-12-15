@@ -250,8 +250,8 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 
 [[package]]
 name = "keras"
-version = "2.7.0"
-description = "Deep learning for humans."
+version = "2.6.0"
+description = "TensorFlow Keras."
 category = "main"
 optional = false
 python-versions = "*"
@@ -658,7 +658,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "1c551c07bd19229aa6974e0dc14c3dd1a845e292a7f174a381590f84a1270bbe"
+content-hash = "5b94a71e29adc7b3c765e5e7415e79313b73b135d084afe103c712a6ad844736"
 
 [metadata.files]
 absl-py = [
@@ -823,7 +823,7 @@ importlib-metadata = [
     {file = "importlib_metadata-4.8.2.tar.gz", hash = "sha256:75bdec14c397f528724c1bfd9709d660b33a4d2e77387a3358f20b848bb5e5fb"},
 ]
 keras = [
-    {file = "keras-2.7.0-py2.py3-none-any.whl", hash = "sha256:0c33ae1f728064ca0d35dfba999e9c316f03623bf5688c82fb83cc74a80ea248"},
+    {file = "keras-2.6.0-py2.py3-none-any.whl", hash = "sha256:504af5656a9829fe803ce48a8580ef16916e89906aceddad9e098614269437e7"},
 ]
 keras-preprocessing = [
     {file = "Keras_Preprocessing-1.1.2-py2.py3-none-any.whl", hash = "sha256:7b82029b130ff61cc99b55f3bd27427df4838576838c5b2f65940e4fcec99a7b"},
