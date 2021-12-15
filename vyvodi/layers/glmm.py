@@ -1,4 +1,3 @@
-from typing import List
 import tensorflow as tf
 import tensorflow_probability as tfp
 from tensorflow_probability.python.layers.dense_variational_v2 import (
