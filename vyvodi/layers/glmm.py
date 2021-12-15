@@ -75,13 +75,13 @@ class RandomEffects(tfkl.Layer):
             tfpl.IndependentNormal((self.n_units, last_dim + self.use_bias))
         ])
 
-        n_posteriors = n_priors * self.n_samples
+        n_posteriors = n_priors * (self.n_samples + 1)
         self._posterior = tfk.Sequential([
             tfpl.VariableLayer(
                 tfpl.IndependentNormal.params_size(n_posteriors)
             ),
             tfpl.IndependentNormal(
-                (self.n_samples, self.n_units, last_dim + self.use_bias)
+                (self.n_samples + 1, self.n_units, last_dim + self.use_bias)
             )
         ]) # mean-field approximation
 
@@ -113,22 +113,21 @@ class RandomEffects(tfkl.Layer):
         return outputs
 
     def _parse_inputs(self, inputs):
+        dtype = tf.as_dtype(self.dtype or tf.keras.backend.floatx())
+
         if isinstance(inputs, (list, tuple)):
-            if len(inputs) != 2:
-                raise ValueError(
-                    'A `RandomEffects` layer must have exactly two inputs. '
-                    f'Received {len(inputs)} inputs. '
-                )
-
-            dtype = tf.as_dtype(self.dtype or tf.keras.backend.floatx())
-            x = inputs[0]
-            x = tf.cast(x, dtype)
-
-            category = inputs[1]
-            category = tf.cast(category, dtype=tf.int32)
+            x, category = inputs
+            if not isinstance(category, tf.Tensor):
+                category = tf.convert_to_tensor(category)
+        
+        # TODO: add support for other types of inputs
         else:
-            x = inputs
-            category = None
+            raise ValueError(
+                '`RandomEffects` expects a list or tuple of two tensors: '
+                '`x` and `category`.'
+            )
 
+        x = tf.cast(x, dtype)
+        category = tf.cast(category, tf.int32)
+        
         return x, category
-
