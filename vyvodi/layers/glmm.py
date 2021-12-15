@@ -87,18 +87,9 @@ class RandomEffects(tfkl.Layer):
 
         self.built = True
 
-    def call(self, inputs: List[tf.Tensor], **kwargs):
-        if len(inputs) != 2:
-            raise ValueError(
-                'A `RandomEffects` layer must have exactly two inputs. '
-                f'Received {len(inputs)} inputs. '
-            )
-
+    def call(self, inputs, **kwargs):
         dtype = tf.as_dtype(self.dtype or tf.keras.backend.floatx())
-        x = inputs[0] # (batch_size, n_features)
-        x = tf.cast(x, dtype)
-        category = inputs[1] # (batch_size, 1)
-        category = tf.cast(category, dtype=tf.int32)
+        x, category = self._parse_inputs(inputs)
 
         q = self._posterior(x)
         p = self._prior(x)
@@ -120,3 +111,24 @@ class RandomEffects(tfkl.Layer):
             outputs = self.activation(outputs)
         
         return outputs
+
+    def _parse_inputs(self, inputs):
+        if isinstance(inputs, (list, tuple)):
+            if len(inputs) != 2:
+                raise ValueError(
+                    'A `RandomEffects` layer must have exactly two inputs. '
+                    f'Received {len(inputs)} inputs. '
+                )
+
+            dtype = tf.as_dtype(self.dtype or tf.keras.backend.floatx())
+            x = inputs[0]
+            x = tf.cast(x, dtype)
+
+            category = inputs[1]
+            category = tf.cast(category, dtype=tf.int32)
+        else:
+            x = inputs
+            category = None
+
+        return x, category
+
