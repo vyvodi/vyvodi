@@ -20,5 +20,5 @@ def test_DenseHierarchical():
 
     output = layer([x, category])
 
-    assert output.shape == (None, 10)
+    assert output.shape.as_list() == [None, 10]
     assert output.dtype == tf.float32
