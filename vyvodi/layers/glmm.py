@@ -59,8 +59,10 @@ class RandomEffects(tfkl.Layer):
     def build(self, input_shape):
         dtype = tf.as_dtype(self.dtype or tf.keras.backend.floatx())
         
-        input_shape = tf.TensorShape(input_shape)
-        last_dim = tf.compat.dimension_value(input_shape[-1])
+        x_input_shape = input_shape[0]
+
+        x_input_shape = tf.TensorShape(x_input_shape)
+        last_dim = tf.compat.dimension_value(x_input_shape[-1])
 
         if last_dim is None:
             raise ValueError(
@@ -116,9 +118,7 @@ class RandomEffects(tfkl.Layer):
 
         if isinstance(inputs, (list, tuple)):
             x, category = inputs
-            if not isinstance(category, tf.Tensor):
-                category = tf.convert_to_tensor(category)
-        
+             
         # TODO: add support for other types of inputs
         else:
             raise ValueError(
