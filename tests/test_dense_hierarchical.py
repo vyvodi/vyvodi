@@ -1,12 +1,12 @@
-from vyvodi.layers.glmm import RandomEffects
+from vyvodi.layers.dense_hierarchical import DenseHierarchical
 
 import tensorflow as tf
 
-def test_RandomEffects():
-    """Test the RandomEffects layer."""
+def test_DenseHierarchical():
+    """Test the DenseHierarchical layer."""
 
     # Create a random effects layer.
-    layer = RandomEffects(
+    layer = DenseHierarchical(
         n_units=10,
         n_samples=2,
         activation=tf.nn.relu,
@@ -22,4 +22,3 @@ def test_RandomEffects():
 
     assert output.shape == (None, 10)
     assert output.dtype == tf.float32
-    

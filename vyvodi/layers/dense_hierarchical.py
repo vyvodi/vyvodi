@@ -11,7 +11,7 @@ tfd = tfp.distributions
 tfb = tfp.bijectors
 
 
-class RandomEffects(tfkl.Layer):
+class DenseHierarchical(tfkl.Layer):
     """Dense layer with random `kernel` and `bias` which are sampled from
     a shared normal distribution.
 
