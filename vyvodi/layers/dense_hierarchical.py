@@ -104,9 +104,10 @@ class DenseHierarchical(tfkl.Layer):
         else:
             b = tf.zeros((self.n_units, 1), dtype=dtype)
 
-        outputs = tf.squeeze(
-            tf.matmul(w, tf.expand_dims(x, axis=1), transpose_b=True) + b
-        )
+        outputs = tf.matmul(w, tf.expand_dims(x, axis=1), transpose_b=True)
+        outputs = outputs + b
+        
+        outputs = tf.squeeze(outputs, axis=-1)
 
         if self.activation is not None:
             outputs = self.activation(outputs)
