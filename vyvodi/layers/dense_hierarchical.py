@@ -35,8 +35,8 @@ class DenseHierarchical(tfkl.Layer):
             n_units: Number of units in the random effect layer.
             n_categories: Number of categories in the random effect layer.
             kl_weight: Weight of the KL divergence term in the loss function.
-            kl_use_exact: Whether to use the exact KL divergence or approximate
-                KL divergence.
+            kl_use_exact: Whether to use the exact KL divergence or 
+                approximate KL divergence.
             activation: Activation function to use.
             use_bias: Whether to use a bias term.
             activity_regularizer: Regularizer function for the output.
