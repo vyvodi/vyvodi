@@ -26,6 +26,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+.devcontainer
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
